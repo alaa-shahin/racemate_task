@@ -4,5 +4,14 @@
   "run": "Run",
   "searchRaceNameOrCountry": "Search Race Name or Country",
   "search": "Search",
-  "done": "Done"
+  "done": "Done",
+  "raceLocation": "Race Location",
+  "raceDistance": "Race Distance",
+  "distance": "Distance",
+  "raceType": "Race Type",
+  "location": "Location",
+  "type": "Type",
+  "date": "Date",
+  "to": "To",
+  "from": "From"
 }

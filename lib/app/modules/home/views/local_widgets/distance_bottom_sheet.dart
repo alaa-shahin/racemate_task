@@ -1,10 +1,17 @@
 import '../../../../../core/utils/constants.dart';
-import '../../../../../core/widgets/input_widget.dart';
 import '../../../../../core/widgets/spacers.dart';
 import '../../../../../index.dart';
 
-class LocationBottomSheet extends StatelessWidget {
-  const LocationBottomSheet({super.key});
+class DistanceBottomSheet extends StatefulWidget {
+  const DistanceBottomSheet({super.key});
+
+  @override
+  State<DistanceBottomSheet> createState() => _DistanceBottomSheetState();
+}
+
+class _DistanceBottomSheetState extends State<DistanceBottomSheet> {
+  double start = 0;
+  double end = 45;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +20,7 @@ class LocationBottomSheet extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 3.w),
+        padding: EdgeInsets.symmetric(horizontal: 4.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -29,7 +36,7 @@ class LocationBottomSheet extends StatelessWidget {
               children: [
                 const Spacer(),
                 Text(
-                  S.of(context).raceLocation,
+                  S.of(context).raceDistance,
                   style: Get.textTheme.titleLarge,
                 ),
                 const Spacer(),
@@ -45,29 +52,20 @@ class LocationBottomSheet extends StatelessWidget {
               ],
             ),
             addVerticalSpace(2),
-            InputWidget(
-              hintText: S.of(context).search,
-              suffixIcon: const Icon(
-                Icons.search,
-                color: Constants.mainColor,
-              ),
-            ),
+            Text('$start - ${end.toStringAsFixed(1)} K'),
             addVerticalSpace(3),
-            SizedBox(
-              height: 30.h,
-              child: ListView.separated(
-                itemCount: 8,
-                itemBuilder: (context, index) {
-                  return CheckboxListTile(
-                    value: false,
-                    onChanged: (newValue) {},
-                    title: const Text('Egypt (3)'),
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return divider();
-                },
-              ),
+            RangeSlider(
+              max: 100,
+              divisions: 20,
+              activeColor: Constants.secondColor,
+              inactiveColor: Constants.borderColor,
+              onChanged: (newValue) {
+                setState(() {
+                  start = newValue.start;
+                  end = newValue.end;
+                });
+              },
+              values: RangeValues(start, end),
             ),
             addVerticalSpace(2),
             ElevatedButton(

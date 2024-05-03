@@ -1,10 +1,16 @@
 import '../../../../../core/utils/constants.dart';
-import '../../../../../core/widgets/input_widget.dart';
 import '../../../../../core/widgets/spacers.dart';
 import '../../../../../index.dart';
 
-class LocationBottomSheet extends StatelessWidget {
-  const LocationBottomSheet({super.key});
+class TypeBottomSheet extends StatefulWidget {
+  const TypeBottomSheet({super.key});
+
+  @override
+  State<TypeBottomSheet> createState() => _TypeBottomSheetState();
+}
+
+class _TypeBottomSheetState extends State<TypeBottomSheet> {
+  int? value;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +19,7 @@ class LocationBottomSheet extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 3.w),
+        padding: EdgeInsets.symmetric(horizontal: 4.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -29,7 +35,7 @@ class LocationBottomSheet extends StatelessWidget {
               children: [
                 const Spacer(),
                 Text(
-                  S.of(context).raceLocation,
+                  S.of(context).raceType,
                   style: Get.textTheme.titleLarge,
                 ),
                 const Spacer(),
@@ -45,29 +51,24 @@ class LocationBottomSheet extends StatelessWidget {
               ],
             ),
             addVerticalSpace(2),
-            InputWidget(
-              hintText: S.of(context).search,
-              suffixIcon: const Icon(
-                Icons.search,
-                color: Constants.mainColor,
-              ),
-            ),
-            addVerticalSpace(3),
-            SizedBox(
-              height: 30.h,
-              child: ListView.separated(
-                itemCount: 8,
-                itemBuilder: (context, index) {
-                  return CheckboxListTile(
-                    value: false,
-                    onChanged: (newValue) {},
-                    title: const Text('Egypt (3)'),
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return divider();
-                },
-              ),
+            ListView.separated(
+              itemCount: 3,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return RadioListTile<int>(
+                  value: index,
+                  groupValue: value,
+                  onChanged: (newValue) {
+                    setState(() {
+                      value = newValue;
+                    });
+                  },
+                  title: const Text('Real-Time event'),
+                );
+              },
+              separatorBuilder: (context, index) {
+                return divider();
+              },
             ),
             addVerticalSpace(2),
             ElevatedButton(

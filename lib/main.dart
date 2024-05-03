@@ -22,6 +22,8 @@ class App extends StatelessWidget {
         defaultTransition: Transition.noTransition,
         localizationsDelegates: const [
           S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
       ),

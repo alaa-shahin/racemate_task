@@ -9,7 +9,7 @@ class Constants {
   static const textLabelColor = Color(0xff8E9BC3);
   static const textColor = Color(0xff1C325F);
 
-  static String domainUrl = "https://localhost:7009";
-  static const String dateFormat = "yyyy-MM-dd";
+  static String domainUrl = "assets/races_data.json";
+  static const String dateFormat = "EEEE, MMMyy, yyyy";
   static const String dateTimeFormat = "yyyy-MM-dd hh:mm a";
 }

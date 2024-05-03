@@ -1,15 +1,12 @@
+import 'dart:convert';
+import 'package:flutter/services.dart';
 import '../../core/utils/constants.dart';
 import '../../core/widgets/loading_widget.dart';
 import '../../index.dart';
 
 class BaseRequest {
-  static final GetHttpClient _req = GetHttpClient(
-    baseUrl: "${Constants.domainUrl}/api",
-    allowAutoSignedCert: true,
-  );
-
-  static Future<dynamic> dynamicRequest(
-    String path, {
+  static Future<dynamic> dynamicRequest({
+    String? path,
     RequestType requestType = RequestType.get,
     dynamic body,
     bool showDialog = false,
@@ -25,21 +22,13 @@ class BaseRequest {
         );
       }
     });
-
-    var res = await _req
-        .request(
-      path,
-      requestType.name,
-      body: body,
-    )
-        .catchError((onError) {
-      debugPrint(onError.toString());
-    });
-    if (res.isOk) {
+    final String response = await rootBundle.loadString(Constants.domainUrl);
+    final data = await json.decode(response);
+    if (data['items'] != null) {
       dismissAllToast();
-      debugPrint(res.body['data']);
+      return data['items'];
     } else {
-      debugPrint("${res.body}");
+      debugPrint("Error $data");
       return null;
     }
   }

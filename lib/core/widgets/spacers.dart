@@ -9,7 +9,5 @@ Widget addHorizontalSpace(double width) => SizedBox(
     );
 
 Widget divider() => Divider(
-      indent: 8.w,
-      endIndent: 8.w,
       color: Colors.grey[300],
     );

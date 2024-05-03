@@ -38,7 +38,7 @@ class RaceWidget extends StatelessWidget {
                   ),
                   child: Image.asset(
                     "assets/images/${race.image}",
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   ),
                 ),
                 addHorizontalSpace(2),

@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:flutter/services.dart';
+import 'package:racemate_task/app/data/base_request.dart';
 
 import '../../../../index.dart';
 import '../../../data/race_model.dart';
@@ -14,7 +12,7 @@ class HomeController extends GetxController
   void onInit() {
     super.onInit();
     tabController = TabController(vsync: this, length: 3);
-    loadData();
+    getData();
   }
 
   @override
@@ -23,11 +21,9 @@ class HomeController extends GetxController
     super.onClose();
   }
 
-  Future<void> loadData() async {
-    final String response =
-        await rootBundle.loadString('assets/races_data.json');
-    final data = await json.decode(response);
-    races = List.from(data['items'].map((race) => RaceModel.fromJson(race)));
+  Future<void> getData() async {
+    var response = await BaseRequest.dynamicRequest();
+    races = List.from(response.map((race) => RaceModel.fromJson(race)));
     update();
   }
 }

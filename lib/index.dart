@@ -4,4 +4,4 @@ export 'package:flutter/material.dart';
 export 'package:collection/collection.dart';
 export './core/utils/extensions.dart';
 export 'package:oktoast/oktoast.dart';
-
+export 'package:flutter_localizations/flutter_localizations.dart';

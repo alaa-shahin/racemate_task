@@ -5,8 +5,11 @@ import 'package:racemate_task/core/widgets/spacers.dart';
 import '../../../../core/utils/constants.dart';
 import '../../../../index.dart';
 import '../controllers/home_controller.dart';
+import 'local_widgets/date_bottom_sheet.dart';
+import 'local_widgets/distance_bottom_sheet.dart';
 import 'local_widgets/location_bottom_sheet.dart';
 import 'local_widgets/race_widget.dart';
+import 'local_widgets/type_bottom_sheet.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -73,7 +76,10 @@ class HomeView extends GetView<HomeController> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Get.bottomSheet(const Text('Alaa'));
+                    Get.bottomSheet(
+                      const TypeBottomSheet(),
+                      backgroundColor: Colors.white,
+                    );
                   },
                   child: Container(
                     padding: const EdgeInsets.all(10),
@@ -83,7 +89,7 @@ class HomeView extends GetView<HomeController> {
                     ),
                     child: Row(
                       children: [
-                        const Text('Type'),
+                        Text(S.of(context).type),
                         addHorizontalSpace(2),
                         const Icon(
                           Icons.keyboard_arrow_down,
@@ -109,7 +115,7 @@ class HomeView extends GetView<HomeController> {
                     ),
                     child: Row(
                       children: [
-                        const Text('Location'),
+                        Text(S.of(context).location),
                         addHorizontalSpace(2),
                         const Icon(Icons.arrow_drop_down)
                       ],
@@ -117,48 +123,52 @@ class HomeView extends GetView<HomeController> {
                   ),
                 ),
                 addHorizontalSpace(3),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Constants.mainColor),
-                  ),
-                  child: Row(
-                    children: [
-                      const Text('Distance'),
-                      addHorizontalSpace(2),
-                      const Icon(Icons.arrow_drop_down)
-                    ],
-                  ),
-                ),
-                addHorizontalSpace(3),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Constants.mainColor),
-                  ),
-                  child: Row(
-                    children: [
-                      const Text('Date'),
-                      addHorizontalSpace(2),
-                      const Icon(Icons.arrow_drop_down)
-                    ],
+                GestureDetector(
+                  onTap: () {
+                    Get.bottomSheet(
+                      const DistanceBottomSheet(),
+                      backgroundColor: Colors.white,
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Constants.mainColor),
+                    ),
+                    child: Row(
+                      children: [
+                        Text(S.of(context).distance),
+                        addHorizontalSpace(2),
+                        const Icon(Icons.arrow_drop_down)
+                      ],
+                    ),
                   ),
                 ),
                 addHorizontalSpace(3),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Row(
-                    children: [
-                      const Text('Alaa'),
-                      addHorizontalSpace(2),
-                      const Icon(Icons.arrow_drop_down)
-                    ],
+                GestureDetector(
+                  onTap: () {
+                    Get.bottomSheet(
+                      const DateBottomSheet(),
+                      backgroundColor: Colors.white,
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Constants.mainColor),
+                    ),
+                    child: Row(
+                      children: [
+                        Text(S.of(context).date),
+                        addHorizontalSpace(2),
+                        const Icon(Icons.arrow_drop_down)
+                      ],
+                    ),
                   ),
                 ),
+                addHorizontalSpace(3),
               ],
             ),
           ),

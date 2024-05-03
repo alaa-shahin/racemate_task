@@ -187,6 +187,13 @@ class _InputWidgetState extends State<InputWidget> {
                   width: 0.5,
                 ),
               ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(
+                  color: Constants.secondColor,
+                  width: 0.5,
+                ),
+              ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
                 borderSide: const BorderSide(

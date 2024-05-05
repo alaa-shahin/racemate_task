@@ -22,21 +22,30 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "clearFilter": MessageLookupByLibrary.simpleMessage("Clear filter?"),
         "community": MessageLookupByLibrary.simpleMessage("Community"),
+        "countries": MessageLookupByLibrary.simpleMessage("Countries"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
         "distance": MessageLookupByLibrary.simpleMessage("Distance"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "from": MessageLookupByLibrary.simpleMessage("From"),
         "location": MessageLookupByLibrary.simpleMessage("Location"),
+        "noRacesFound": MessageLookupByLibrary.simpleMessage("No races found"),
+        "noResultFound":
+            MessageLookupByLibrary.simpleMessage("No result Found"),
         "raceDistance": MessageLookupByLibrary.simpleMessage("Race Distance"),
         "raceLocation": MessageLookupByLibrary.simpleMessage("Race Location"),
         "raceType": MessageLookupByLibrary.simpleMessage("Race Type"),
         "races": MessageLookupByLibrary.simpleMessage("Races"),
+        "reset": MessageLookupByLibrary.simpleMessage("Reset"),
         "run": MessageLookupByLibrary.simpleMessage("Run"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "searchRaceNameOrCountry":
             MessageLookupByLibrary.simpleMessage("Search Race Name or Country"),
         "to": MessageLookupByLibrary.simpleMessage("To"),
-        "type": MessageLookupByLibrary.simpleMessage("Type")
+        "type": MessageLookupByLibrary.simpleMessage("Type"),
+        "yesClearFilters":
+            MessageLookupByLibrary.simpleMessage("Yes, clear filters")
       };
 }

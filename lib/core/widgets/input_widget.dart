@@ -130,7 +130,7 @@ class _InputWidgetState extends State<InputWidget> {
     showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
+      firstDate: DateTime.now().add(const Duration(days: -365)),
       lastDate: DateTime.now().add(const Duration(days: 365)),
     ).then((value) {
       if (value != null) {

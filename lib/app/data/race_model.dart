@@ -1,3 +1,5 @@
+import '../../core/utils/utils.dart';
+
 class RaceModel {
   final String name;
   final String? organizer;
@@ -23,7 +25,7 @@ class RaceModel {
     return RaceModel(
       name: json['name'],
       organizer: json['organizer'],
-      date: json['date'],
+      date: formatDate(json['date']),
       country: json['country'],
       city: json['city'],
       image: json['image'],

@@ -9,7 +9,7 @@ class BaseRequest {
     String? path,
     RequestType requestType = RequestType.get,
     dynamic body,
-    bool showDialog = false,
+    bool showDialog = true,
   }) async {
     WidgetsBinding.instance.addPostFrameCallback((s) async {
       if (showDialog) {

@@ -1,9 +1,12 @@
 import '../../../../../core/utils/constants.dart';
 import '../../../../../core/widgets/spacers.dart';
 import '../../../../../index.dart';
+import '../../controllers/home_controller.dart';
 
 class DistanceBottomSheet extends StatefulWidget {
-  const DistanceBottomSheet({super.key});
+  const DistanceBottomSheet({super.key, required this.maxNumber});
+
+  final double maxNumber;
 
   @override
   State<DistanceBottomSheet> createState() => _DistanceBottomSheetState();
@@ -41,9 +44,16 @@ class _DistanceBottomSheetState extends State<DistanceBottomSheet> {
                 ),
                 const Spacer(),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.find<HomeController>().filteredDistance.clear();
+                    Get.find<HomeController>().filterCounter--;
+                    Get.find<HomeController>().filteredRaces =
+                        Get.find<HomeController>().races;
+                    Get.find<HomeController>().update();
+                    Get.back();
+                  },
                   child: Text(
-                    'Reset',
+                    S.current.reset,
                     style: Get.textTheme.labelLarge!.copyWith(
                       color: Constants.secondColor,
                     ),
@@ -55,7 +65,7 @@ class _DistanceBottomSheetState extends State<DistanceBottomSheet> {
             Text('$start - ${end.toStringAsFixed(1)} K'),
             addVerticalSpace(3),
             RangeSlider(
-              max: 100,
+              max: widget.maxNumber,
               divisions: 20,
               activeColor: Constants.secondColor,
               inactiveColor: Constants.borderColor,
@@ -69,7 +79,12 @@ class _DistanceBottomSheetState extends State<DistanceBottomSheet> {
             ),
             addVerticalSpace(2),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                List<String> result = [];
+                result.add(start.toString());
+                result.add(end.toString());
+                Get.back(result: result);
+              },
               child: Text(S.of(context).done.toUpperCase()),
             ),
             addVerticalSpace(2),

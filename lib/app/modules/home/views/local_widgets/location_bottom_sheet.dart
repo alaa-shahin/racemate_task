@@ -2,9 +2,19 @@ import '../../../../../core/utils/constants.dart';
 import '../../../../../core/widgets/input_widget.dart';
 import '../../../../../core/widgets/spacers.dart';
 import '../../../../../index.dart';
+import '../../controllers/home_controller.dart';
 
-class LocationBottomSheet extends StatelessWidget {
-  const LocationBottomSheet({super.key});
+class LocationBottomSheet extends StatefulWidget {
+  const LocationBottomSheet({super.key, required this.countries});
+
+  final List<String> countries;
+
+  @override
+  State<LocationBottomSheet> createState() => _LocationBottomSheetState();
+}
+
+class _LocationBottomSheetState extends State<LocationBottomSheet> {
+  List<String> selectedIndexes = [];
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +44,16 @@ class LocationBottomSheet extends StatelessWidget {
                 ),
                 const Spacer(),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.find<HomeController>().duplicateCountries.clear();
+                    Get.find<HomeController>().filterCounter--;
+                    Get.find<HomeController>().filteredRaces =
+                        Get.find<HomeController>().races;
+                    Get.find<HomeController>().update();
+                    Get.back();
+                  },
                   child: Text(
-                    'Reset',
+                    S.of(context).reset,
                     style: Get.textTheme.labelLarge!.copyWith(
                       color: Constants.secondColor,
                     ),
@@ -56,12 +73,24 @@ class LocationBottomSheet extends StatelessWidget {
             SizedBox(
               height: 30.h,
               child: ListView.separated(
-                itemCount: 8,
+                itemCount: widget.countries.length,
                 itemBuilder: (context, index) {
+                  var country = widget.countries[index];
                   return CheckboxListTile(
-                    value: false,
-                    onChanged: (newValue) {},
-                    title: const Text('Egypt (3)'),
+                    value: selectedIndexes.contains(country),
+                    onChanged: (newValue) {
+                      setState(() {
+                        if (selectedIndexes.contains(country)) {
+                          selectedIndexes.remove(country); // unselect
+                        } else {
+                          selectedIndexes.add(country); // select
+                        }
+                      });
+                    },
+                    title: Text(country),
+                    tileColor: selectedIndexes.contains(country)
+                        ? Constants.selectedTileColor
+                        : null,
                   );
                 },
                 separatorBuilder: (context, index) {
@@ -71,7 +100,16 @@ class LocationBottomSheet extends StatelessWidget {
             ),
             addVerticalSpace(2),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                if (selectedIndexes.isNotEmpty) {
+                  const pattern = r"\(.*?\)";
+                  final cleanedTexts = selectedIndexes
+                      .map(
+                          (text) => text.replaceAll(RegExp(pattern), "").trim())
+                      .toList();
+                  Get.back(result: cleanedTexts);
+                }
+              },
               child: Text(S.of(context).done.toUpperCase()),
             ),
             addVerticalSpace(2),

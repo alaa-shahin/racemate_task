@@ -199,6 +199,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Reset`
+  String get reset {
+    return Intl.message(
+      'Reset',
+      name: 'reset',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No races found`
+  String get noRacesFound {
+    return Intl.message(
+      'No races found',
+      name: 'noRacesFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Countries`
+  String get countries {
+    return Intl.message(
+      'Countries',
+      name: 'countries',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes, clear filters`
+  String get yesClearFilters {
+    return Intl.message(
+      'Yes, clear filters',
+      name: 'yesClearFilters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clear filter?`
+  String get clearFilter {
+    return Intl.message(
+      'Clear filter?',
+      name: 'clearFilter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No result Found`
+  String get noResultFound {
+    return Intl.message(
+      'No result Found',
+      name: 'noResultFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

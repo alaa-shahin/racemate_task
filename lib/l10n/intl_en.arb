@@ -13,5 +13,12 @@
   "type": "Type",
   "date": "Date",
   "to": "To",
-  "from": "From"
+  "from": "From",
+  "reset": "Reset",
+  "noRacesFound": "No races found",
+  "countries": "Countries",
+  "yesClearFilters": "Yes, clear filters",
+  "cancel": "Cancel",
+  "clearFilter": "Clear filter?",
+  "noResultFound": "No result Found"
 }

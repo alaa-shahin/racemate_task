@@ -4,6 +4,7 @@ import 'index.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Future.delayed(const Duration(milliseconds: 1000));
   runApp(const App());
 }
 

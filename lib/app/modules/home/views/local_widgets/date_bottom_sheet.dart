@@ -3,6 +3,7 @@ import 'package:racemate_task/core/widgets/input_widget.dart';
 import '../../../../../core/utils/constants.dart';
 import '../../../../../core/widgets/spacers.dart';
 import '../../../../../index.dart';
+import '../../controllers/home_controller.dart';
 
 class DateBottomSheet extends StatefulWidget {
   const DateBottomSheet({super.key});
@@ -12,8 +13,8 @@ class DateBottomSheet extends StatefulWidget {
 }
 
 class _DateBottomSheetState extends State<DateBottomSheet> {
-  String? from;
-  String? to;
+  String? start;
+  String? end;
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +44,16 @@ class _DateBottomSheetState extends State<DateBottomSheet> {
                 ),
                 const Spacer(),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.find<HomeController>().filteredDates.clear();
+                    Get.find<HomeController>().filterCounter--;
+                    Get.find<HomeController>().filteredRaces =
+                        Get.find<HomeController>().races;
+                    Get.find<HomeController>().update();
+                    Get.back();
+                  },
                   child: Text(
-                    'Reset',
+                    S.current.reset,
                     style: Get.textTheme.labelLarge!.copyWith(
                       color: Constants.secondColor,
                     ),
@@ -57,10 +65,10 @@ class _DateBottomSheetState extends State<DateBottomSheet> {
             Text(S.of(context).from),
             InputWidget.datePicker(
               hintText: 'Mon, Oct 10, 2022',
-              initialValue: from,
+              initialValue: start,
               onChanged: (newValue) {
                 setState(() {
-                  from = newValue;
+                  start = newValue;
                 });
               },
             ),
@@ -68,16 +76,27 @@ class _DateBottomSheetState extends State<DateBottomSheet> {
             Text(S.of(context).to),
             InputWidget.datePicker(
               hintText: 'Mon, Oct 10, 2022',
-              initialValue: to,
+              initialValue: end,
               onChanged: (newValue) {
                 setState(() {
-                  to = newValue;
+                  end = newValue;
                 });
               },
             ),
             addVerticalSpace(2),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                List<String> result = [];
+                if (start != null) {
+                  result.add(start.toString());
+                }
+                if (end != null) {
+                  result.add(end.toString());
+                }
+                if (result.isNotEmpty) {
+                  Get.back(result: result);
+                }
+              },
               child: Text(S.of(context).done.toUpperCase()),
             ),
             addVerticalSpace(2),
